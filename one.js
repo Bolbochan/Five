@@ -1,19 +1,73 @@
 //array shopping list
-const List = [`Soap`, `Meat`, `Cofee`, `Candy`, `Beer`]
-const Num = [
-    5,//soap
-    3,//meat 
-    1,//cofee
-    4,//candy
-    2,//beer
-]
-const SOAP = prompt(`We need 5 soaps. And we bought?`)
-const MEAT = prompt(`We need 3 meats. And we bought?`)
-const COFEE = prompt(`We need 1 cofee. And we bought?`)
-const CANDY = prompt(`We need 4 candy. And we bought?`)
-const BEER = prompt(`We need 2   beers. And we bought?`)
+const cargo = ["Soap", "Meat", "Cofee", "Candy", "Beer"]
+let num = {
+    soap: 5,
+    meat: 0,
+    cofee: 0,
+    candy: 4,
+    beer: 2,
+};//number of units
+const buy = {
+    soap: `yes`,
+    meat: `no`,
+    cofee: `no`,
+    candy: `yes`,
+    beer: `yes`,
+}//purchased goods or not
 
-const Check = [+SOAP, +MEAT, +COFEE, +CANDY, +BEER]
-console.log(Check)
-console.log(Num)
-console.log(Num === Check)
+const cargoData = cargo.map((name) => {
+    return {
+        name: name,
+        number: num[name.toLowerCase()],
+        bought: buy[name.toLowerCase()],
+    }
+});
+
+const cargoDataBot = cargoData.slice()
+cargoDataBot.sort((prev, next) => {
+    if (prev.bought < next.bought) return -1;
+    if (prev.bought < next.bought) return 1;
+});
+console.log(cargoData); // original list
+console.log(cargoDataBot) // sort list
+
+let product = prompt(`Please,specify the name of the product`)
+let indicate = prompt(`Please,indicate the number of goods`)
+const NewCargo = cargoData.slice()
+
+function Two(indicate, product) {
+    if (indicate > 0) {
+        if (cargo.includes(product)) {
+            switch (product) {
+                case `Soap`: {
+                    console.log(num.soap = num.soap + +indicate)
+                } break;
+
+                case `Meat`: {
+                    console.log(num.soap = num.meat + +indicate)
+                } break;
+
+                case `Cofee`: {
+                    console.log(num.soap = num.cofee + +indicate)
+                } break;
+
+                case `Candy`: {
+                    console.log(num.soap = num.candy + +indicate)
+                } break;
+
+                case `Beer`: {
+                    console.log(num.soap = num.beer + +indicate)
+                } break;
+            }
+        }
+
+        if (cargo.includes(product) === false) {
+            NewCargo.push({ name: product, number: +   indicate, bought: "yes" })
+        }
+    }
+    else if (+indicate === 0) {
+        NewCargo.push({ name: product, number: +indicate, bought: "no" })
+    }
+}
+console.log(Two(indicate, product))
+console.log(NewCargo)
