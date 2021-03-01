@@ -34,7 +34,7 @@ console.log(cargoDataBot) // sort list
 let product = prompt(`Please,specify the name of the product`)
 let indicate = prompt(`Please,indicate the number of goods`)
 const NewCargo = cargoData.slice()
-
+//Функція Two кожного разу підраховує зміну кількості продуктів, але якщо задати 'num.soap = num.soap + +indicate' число змінної залишається незмінним, хоча якщо виводити його через  'console.log(num.soap = num.soap + +indicate)' воно правильне.  
 function Two(indicate, product) {
     if (indicate > 0) {
         if (cargo.includes(product)) {
